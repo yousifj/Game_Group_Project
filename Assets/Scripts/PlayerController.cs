@@ -162,7 +162,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Die()
+    //Yousif I changed this to public because I needed to use it when enemy's bullets kill the player -Mario 
+    public void Die()
     {
         isAlive = false;
         //animator.SetBool("isDoubleJumping", false);
