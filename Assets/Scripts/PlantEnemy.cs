@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy3 : MonoBehaviour
+public class PlantEnemy : MonoBehaviour
 
 {
     //This enum represents all of the states for the enemy 
@@ -53,9 +53,9 @@ public class Enemy3 : MonoBehaviour
             case EnemyThreeState.Idle:
                 //Get the players distance from the enemy
                 distanceToPlayer = CheckPlayersDistanceFromyEnemy();
-                
-                //Check if the player is within the attack range
-                if (distanceToPlayer < attackRange)
+
+                //Check if the player is within the attack range and the player is in front of the enemy 
+                if (distanceToPlayer < attackRange && IsPlayerInFrontOfEnemy())
                 {
                     //Move to the Attack state
                     enemyThreeCurrentState = EnemyThreeState.Attack;
@@ -98,5 +98,22 @@ public class Enemy3 : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         
         return distanceToPlayer;
+    }
+
+    private bool IsPlayerInFrontOfEnemy()
+    {
+        //Get the direction vector pointing from the enemy to the player
+        Vector3 directionToPlayer = (player.transform.position - transform.position);
+
+        //Calculate the angle between the enemy's right direction and the direction to the player
+        float angle = Vector3.Angle(transform.right, directionToPlayer);
+
+        //Checks if the player is in front of the enemy
+        if(Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

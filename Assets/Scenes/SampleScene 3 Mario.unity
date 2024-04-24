@@ -1523,7 +1523,6 @@ MonoBehaviour:
   attackRange: 2.15
   bulletStartPosition: {fileID: 1808649719}
   bulletPreFab: {fileID: 8981576807441880135, guid: 4351a67b812951a4683b88c82dd12e88, type: 3}
-  bulletSpeed: 3
 --- !u!1 &1808649718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,11 +1583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.18
+      value: -3.56
       objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.54
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_LocalPosition.z
