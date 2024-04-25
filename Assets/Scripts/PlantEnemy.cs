@@ -22,7 +22,7 @@ public class PlantEnemy : MonoBehaviour
     private float distanceToPlayer;
 
     //This variable determines how close the player can get before the enemy switches to the attack state
-    public float attackRange = 2.15f;
+    public float attackRange = 8.6f;
 
     //Tracks the time to regulate the firing rate of bullets
     private float timer;

@@ -18,11 +18,15 @@ public class Bullets : MonoBehaviour
     //This variable is a reference to the Rigidbody2D component attached to the bullet
     private Rigidbody2D bulletRigidbody;
 
-    //This represents the player's direction
-    private Vector2 playerDirection;
-
     //This represents the speed for each bullet
     public float bulletSpeed = 6.0f;
+
+    //Time in seconds before the bullet is destroyed if it hasn't collided with anything 
+    public float bulletLifetime = 5.0f;
+
+    //Timer to track the bullet's lifespan
+    private float lifespanTimer;
+
     void Start()
     {
         //Find the player object by name
@@ -31,11 +35,24 @@ public class Bullets : MonoBehaviour
         //Get the rigid body 2D component of the bullet
         bulletRigidbody = GetComponent<Rigidbody2D>();
 
-        //Calculate the player's direction
-        playerDirection = (player.transform.position - transform.position).normalized;
+        //This ensures that the bullet's rotation gets set to 0 so the bullet shoots straight 
+        transform.rotation = Quaternion.identity;
 
-        //Set the velocity of the bullet to move in the calculated direction
-        bulletRigidbody.velocity = new Vector2(playerDirection.x, playerDirection.y).normalized * bulletSpeed;
+        //Set the velocity of the bullet to move straight
+        bulletRigidbody.velocity = -transform.right * bulletSpeed;
+    }
+
+    void Update()
+    {
+        //Update the lifespan timer
+        lifespanTimer += Time.deltaTime;
+
+        //Check if the bullet's lifespan exceeds the specified lifetime basically destroys the bullet if it goes offscreen after five seconds 
+        if (lifespanTimer >= bulletLifetime)
+        {
+            //Destroy the bullet
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,7 +76,7 @@ public class Bullets : MonoBehaviour
         //This check if bullets hit anything other than the player like walls etc 
         else if (collision.gameObject != player)
         {
-
+            Destroy(gameObject);
         }
     }
 }
