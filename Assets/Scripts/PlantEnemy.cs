@@ -81,8 +81,8 @@ public class PlantEnemy : MonoBehaviour
                 //Get the players distance from the enemy after a bullet is fired
                 distanceToPlayer = CheckPlayersDistanceFromyEnemy();
 
-                //Check if the player is out of the attack range
-                if (distanceToPlayer > attackRange)
+                //Check if the player is out of the attack range or if the player is not front of the enemy 
+                if (distanceToPlayer > attackRange || IsPlayerInFrontOfEnemy() == false)
                 {
                     //Move to the Idle state
                     enemyThreeCurrentState = EnemyThreeState.Idle;
