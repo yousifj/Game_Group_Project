@@ -177,9 +177,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator HandelDeath()
     {
         yield return new WaitForSeconds(2);
-        //FindObjectOfType<GameSession>().ProcessPlayerDeath();
+        FindObjectOfType<GameManger>().handelDeath();
         //reset level 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 
     }

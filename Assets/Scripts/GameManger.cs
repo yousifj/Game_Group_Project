@@ -34,7 +34,7 @@ public class GameManger : MonoBehaviour
             handelWin();
         }
     }
-    void handelLose()
+    public void handelDeath()
     {
         gameOverCanvas.SetActive(true);
 
