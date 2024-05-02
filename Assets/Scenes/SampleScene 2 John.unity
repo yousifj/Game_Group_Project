@@ -1792,6 +1792,8 @@ MonoBehaviour:
   jumpForce: 7
   offPlatform: 0
   player: {fileID: 2147317890}
+  detectionXRange: 10
+  detectionYRange: 1
   chickenState: 0
 --- !u!1 &1673303020
 GameObject:
@@ -1933,13 +1935,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4396183832989820465, guid: 0b74889471e69624299691bde656e8f9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.03
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4396183832989820477, guid: 0b74889471e69624299691bde656e8f9, type: 3}
       propertyPath: m_LocalPosition.y
