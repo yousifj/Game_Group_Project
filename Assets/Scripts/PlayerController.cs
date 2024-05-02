@@ -40,12 +40,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isAlive) { return; }
+        if (!isAlive) {
+            return; 
+        }
         Run();
         Jump();
         Clime();
         Attack();
+        CheckHazards();
         
+    }
+
+    private void CheckHazards()
+    {
+        if (feetBoxcollider2D.IsTouchingLayers(LayerMask.GetMask("Hazard")))
+        {
+            Die();
+        }
     }
 
     // handel climeing a ladder
