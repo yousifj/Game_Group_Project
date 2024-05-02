@@ -9,6 +9,8 @@ public class GameManger : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI enemyText;
     [SerializeField] TextMeshProUGUI fruitText;
+    [SerializeField] GameObject winCanvas;
+    [SerializeField] GameObject gameOverCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,11 @@ public class GameManger : MonoBehaviour
             handelWin();
         }
     }
+    void handelLose()
+    {
+        gameOverCanvas.SetActive(true);
 
+    }
     void handelWin()
     {
         StartCoroutine(Win());
@@ -40,7 +46,8 @@ public class GameManger : MonoBehaviour
     IEnumerator Win()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        winCanvas.SetActive(true);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
 
     }
