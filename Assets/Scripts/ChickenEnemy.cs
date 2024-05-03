@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChickenEnemy : MonoBehaviour
 {
-    public float moveSpeed = 1.5f;
+    public float moveSpeed = 0.9f;
     // Start is called before the first frame update
     public float jumpForce = 7f; // Jump force
     public bool offPlatform = false;
@@ -13,10 +13,12 @@ public class ChickenEnemy : MonoBehaviour
     public Transform player; // Reference to the player
     public float detectionXRange = 10f;
     public float detectionYRange = 0.5f;
+    private bool isLerping = false;
+    private Vector3 targetPosition;
 
     public enum eState : int
     {
-        forward, //clear
+        forward, //black
         offLedge, //green
         turnAround, //blue
         quickDash, //red
@@ -33,14 +35,13 @@ public class ChickenEnemy : MonoBehaviour
         new Color(255,   0,   0),
   };
     float turnStartTime;
-    float recoveryTime = 5.0f;
+    float recoveryTime = 0.5f;
     private CircleCollider2D circleCollider;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         chickenState = eState.forward;
-        spriteRenderer.color = stateColors[(int)chickenState];
         circleCollider = GetComponent<CircleCollider2D>();
     }
 
@@ -57,13 +58,14 @@ public class ChickenEnemy : MonoBehaviour
     {
         if (IsPlayerWithinRange())
         {
+            Debug.Log("Speeding up within range");
             moveSpeed = 2.25f;
         }
         else
         {
             moveSpeed = 1.5f;
         }
-        spriteRenderer.color = stateColors[(int)chickenState];
+       // spriteRenderer.color = stateColors[(int)chickenState];
         switch (chickenState)
         {
 
@@ -72,24 +74,26 @@ public class ChickenEnemy : MonoBehaviour
                 moveForward();
                 break;
             case eState.offLedge:
-                RotateSprite180();
                 float currentTime = Time.time;
+                //pause for the revovery time
                 if (currentTime >= turnStartTime + recoveryTime)
                 {
                     chickenState = eState.turnAround;
                 }
-                chickenState = eState.forward;
-                //make him wait for a little bit of time and then dash forward before 
-                //turn him around and then 
+               
+                break;
+            case eState.turnAround:
+                RotateSprite180();
+                chickenState = eState.quickDash;
                 break;
             case eState.quickDash:
-
-                moveForward();
+                transform.position = transform.position + new Vector3(moveDirection * 0.25f, 0f, 0f);
+                chickenState = eState.forward;
                 break;
         }
 
         //update the state to turn the chicken around if we are about to fall off
-        if (offPlatform && chickenState != eState.offLedge)
+        if (offPlatform && chickenState != eState.offLedge && chickenState != eState.turnAround && chickenState !=eState.quickDash)
         {
             chickenState = eState.offLedge;
             //change the direction
@@ -99,7 +103,6 @@ public class ChickenEnemy : MonoBehaviour
 
         }
     }
-
 
     public void moveForward()
     {
@@ -115,7 +118,6 @@ public class ChickenEnemy : MonoBehaviour
     }
 
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -124,43 +126,13 @@ public class ChickenEnemy : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //when the chicken falls off the ledge we need to say to inform state machine
-        offPlatform = true;
-    }
-
-
-
-    /*public void UpdateChickenPosition()
-    {
-        // Get the mouse position in world coordinates
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Lock the y and z coordinates
-        mousePosition.y = transform.position.y;
-        mousePosition.z = transform.position.z;
-
-        // Calculate the direction to move based on the mouse position
-        Vector3 moveDirection = mousePosition - transform.position;
-
-        // Check if the player is not on top of the mouse
-        if (moveDirection.magnitude > 0.1f) // Adjust this threshold as needed
+        //need to hit the player if we are on it, ensure sword also have player TAG!!
+        if (!collision.CompareTag("Player"))
         {
-            moveDirection.Normalize(); // Normalize the direction vector to have a magnitude of 1
-
-            // Move the player towards the mouse horizontally
-            transform.position += new Vector3(moveDirection.x, 0f, 0f) * moveSpeed * Time.deltaTime;
+            Debug.Log("Player exiting");
+            offPlatform = true;
         }
     }
-    private void HandleJump()
-    {
-        // Check for left mouse button click
-        if (Input.GetMouseButtonDown(1))
-        {
-            // Apply jump force to the player
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
-        }
-    } */
+
+
 }
