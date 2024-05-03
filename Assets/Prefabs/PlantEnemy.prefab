@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5099216268984541619}
   - component: {fileID: 5099216268984541623}
   - component: {fileID: 5099216268984541576}
+  - component: {fileID: 1452829211}
   m_Layer: 0
   m_Name: PlantEnemy
   m_TagString: Untagged
@@ -107,7 +108,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5833333, y: 0.7291667}
+    oldSize: {x: 0.9166667, y: 0.875}
     newSize: {x: 0.32, y: 0.34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -178,9 +179,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyThreeCurrentState: 0
-  attackRange: 2.15
+  attackRange: 5
   bulletStartPosition: {fileID: 5099216270375982111}
   bulletPreFab: {fileID: 8981576807441880135, guid: 4351a67b812951a4683b88c82dd12e88, type: 3}
+--- !u!95 &1452829211
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099216268984541617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2941eb75239e0cf4698b26278fa5e1ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5099216270375982110
 GameObject:
   m_ObjectHideFlags: 0

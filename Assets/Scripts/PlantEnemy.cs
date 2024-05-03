@@ -36,10 +36,14 @@ public class PlantEnemy : MonoBehaviour
     //This is a reference to the bullet prefab
     public GameObject bulletPreFab;
 
+    private Animator animator;
+
     void Start()
     {
         //Set the enemy's initial state to idle
         enemyThreeCurrentState = EnemyThreeState.Idle;
+
+        animator = GetComponent<Animator>();
 
         //Find the player object by name
         player = GameObject.Find("Player");
@@ -73,9 +77,7 @@ public class PlantEnemy : MonoBehaviour
                 {
                     //Reset the timer
                     timer = 0;
-
-                    //Spawn a bullet prefab and define the start position and rotation for the bullet
-                    Instantiate(bulletPreFab, bulletStartPosition.position, bulletStartPosition.rotation);
+                    animator.SetBool("isAttacking", true);
                 }
 
                 //Get the players distance from the enemy after a bullet is fired
@@ -84,12 +86,21 @@ public class PlantEnemy : MonoBehaviour
                 //Check if the player is out of the attack range or if the player is not front of the enemy 
                 if (distanceToPlayer > attackRange || IsPlayerInFrontOfEnemy() == false)
                 {
+                    
                     //Move to the Idle state
                     enemyThreeCurrentState = EnemyThreeState.Idle;
                 }
 
                 break;
         }
+    }
+
+    private void ShotBullet()
+    {
+        //Spawn a bullet prefab and define the start position and rotation for the bullet
+        Instantiate(bulletPreFab, bulletStartPosition.position, bulletStartPosition.rotation);
+        animator.SetBool("isAttacking", false);
+
     }
 
     private float CheckPlayersDistanceFromyEnemy()
