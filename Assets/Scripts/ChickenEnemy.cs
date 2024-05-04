@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ChickenEnemy : MonoBehaviour
 {
-    public float moveSpeed = 0.9f;
+    [SerializeField] float slowMoveSpeed = 0.9f;
+    [SerializeField] float moveSpeedFast = 2.25f;
+    private float moveSpeed;
     // Start is called before the first frame update
     public float jumpForce = 7f; // Jump force
     public bool offPlatform = false;
@@ -13,8 +15,7 @@ public class ChickenEnemy : MonoBehaviour
     public Transform player; // Reference to the player
     public float detectionXRange = 10f;
     public float detectionYRange = 0.5f;
-    private bool isLerping = false;
-    private Vector3 targetPosition;
+    Animator animationController;
 
     public enum eState : int
     {
@@ -40,6 +41,7 @@ public class ChickenEnemy : MonoBehaviour
 
     void Start()
     {
+        animationController = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         chickenState = eState.forward;
         circleCollider = GetComponent<CircleCollider2D>();
@@ -59,11 +61,13 @@ public class ChickenEnemy : MonoBehaviour
         if (IsPlayerWithinRange())
         {
             Debug.Log("Speeding up within range");
-            moveSpeed = 2.25f;
+            animationController.speed = 2.0f;
+            moveSpeed = moveSpeedFast;
         }
         else
         {
-            moveSpeed = 1.5f;
+            animationController.speed = 1.0f;
+            moveSpeed = slowMoveSpeed;
         }
        // spriteRenderer.color = stateColors[(int)chickenState];
         switch (chickenState)
