@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector2 deathJump = new Vector2(25, 50);
 
 
-
     // State 
     bool isAlive = true;
+    bool isAttacking = false;
     bool canDoubleJump = false;
     float gravityStart;
 
@@ -40,9 +40,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Do not let user controll a dead player
         if (!isAlive) {
             return; 
         }
+        // Controll the player behavior with input
         Run();
         Jump();
         Clime();
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    // The Player should die if he touches something in the hazard layer. 
     private void CheckHazards()
     {
         if (feetBoxcollider2D.IsTouchingLayers(LayerMask.GetMask("Hazard")))
@@ -73,18 +76,20 @@ public class PlayerController : MonoBehaviour
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, inputVelocity * climeSpeed);
 
     }
-    // take input from the user
+    // Take input from the user to attack
     private void Attack()
     {
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
         {
+            // Animations has the events for killing a player
             animator.SetBool("isAttacking", true);
-            
+            isAttacking = true;
+
         }
         
     }
-    // trigger the actual killing on an enemy
+    // Trigger the actual killing on an enemy, controlled by the animation 
     private void KillEnemy()
     {
         
@@ -92,13 +97,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //stop the attack 
+    // Stop the attack 
     private void StopAttack()
     {
+        isAttacking = false;
         animator.SetBool("isAttacking", false);
+        
     }
 
-    // handel running
+    // Handel running
     private void Run()
     {
         float inputVelocity = Input.GetAxisRaw("Horizontal");
@@ -154,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    // make sure the player faces the right direction 
+    // Make sure the player faces the right direction 
     private void FlipSprite()
     {
         bool playerisMovingHorzantily = Mathf.Abs(rigidBody2D.velocity.x) > Mathf.Epsilon;
@@ -173,7 +180,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Yousif I changed this to public because I needed to use it when enemy's bullets kill the player -Mario 
+    // Method to controll behivor of the player dying.
     public void Die()
     {
         isAlive = false;
@@ -185,15 +192,14 @@ public class PlayerController : MonoBehaviour
         //FindObjectOfType<AudioManger>().Play("Death");
 
     }
+    // Handel the death of the player
     IEnumerator HandelDeath()
     {
         yield return new WaitForSeconds(2);
         FindObjectOfType<GameManger>().handelDeath();
-        //reset level 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
 
     }
+    // Handel the Win of the player
     public void PlayerDisappear()
     {
         StartCoroutine(HandelWin());
