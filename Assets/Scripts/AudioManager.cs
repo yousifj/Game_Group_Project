@@ -9,27 +9,40 @@ public class AudioManager : MonoBehaviour
         BackgroundMusic,
         GameOver,
         NextLevel,
-        PlayerWalk,
         PlayerAttack,
         PlayerDeath,
-        EnemyWalk,
-        EnemyDeath,
-        EnemyDamage
+        ChickenAttack,
+        ChickenDeath,
+        BirdAttack,
+        BirdDeath,
+        PeaShooterAttack,
+        PeaShooterDeath,
+        RhinoAttack,
+        RhinoDamage,
+        RhinoDeath
     }
 
     //select sounds in unity editor
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private AudioClip nextLevelSound;
-    [SerializeField] private AudioClip playerWalkSound;
     [SerializeField] private AudioClip playerAttackSound;
     [SerializeField] private AudioClip playerDeathSound;
-    [SerializeField] private AudioClip enemyWalkSound;
-    [SerializeField] private AudioClip enemyDeathSound;
-    [SerializeField] private AudioClip enemyDamageSound;
+    [SerializeField] private AudioClip chickenAttackSound;
+    [SerializeField] private AudioClip chickenDeathSound;
+    [SerializeField] private AudioClip birdAttackSound;
+    [SerializeField] private AudioClip birdDeathSound;
+    [SerializeField] private AudioClip peaShooterAttackSound;
+    [SerializeField] private AudioClip peaShooterDeathSound;
+    [SerializeField] private AudioClip rhinoAttackSound;
+    [SerializeField] private AudioClip rhinoDamageSound;
+    [SerializeField] private AudioClip rhinoDeathSound;
 
     private AudioSource audioSource;
 
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -49,24 +62,38 @@ public class AudioManager : MonoBehaviour
             case Sound.NextLevel:
                 audioSource.PlayOneShot(nextLevelSound);
                 break;
-            case Sound.PlayerWalk:
-                audioSource.PlayOneShot(playerWalkSound);
-                break;
             case Sound.PlayerAttack:
                 audioSource.PlayOneShot(playerAttackSound);
                 break;
             case Sound.PlayerDeath:
                 audioSource.PlayOneShot(playerDeathSound);
                 break;
-            case Sound.EnemyWalk:
-                audioSource.PlayOneShot(enemyWalkSound);
+            case Sound.ChickenAttack:
+                audioSource.PlayOneShot(chickenAttackSound);
                 break;
-            case Sound.EnemyDeath:
-                audioSource.PlayOneShot(enemyDeathSound);
+            case Sound.ChickenDeath:
+                audioSource.PlayOneShot(chickenDeathSound);
                 break;
-            case Sound.EnemyDamage:
-                if (enemyDamageSound != null) // Optional
-                    audioSource.PlayOneShot(enemyDamageSound);
+            case Sound.BirdAttack:
+                audioSource.PlayOneShot(birdAttackSound);
+                break;
+            case Sound.BirdDeath:
+                audioSource.PlayOneShot(birdDeathSound);
+                break;
+            case Sound.PeaShooterAttack:
+                audioSource.PlayOneShot(peaShooterAttackSound);
+                break;
+            case Sound.PeaShooterDeath:
+                audioSource.PlayOneShot(peaShooterDeathSound);
+                break;
+            case Sound.RhinoAttack:
+                audioSource.PlayOneShot(rhinoAttackSound);
+                break;
+            case Sound.RhinoDamage:
+                audioSource.PlayOneShot(rhinoDamageSound);
+                break;
+            case Sound.RhinoDeath:
+                audioSource.PlayOneShot(rhinoDeathSound);
                 break;
             default:
                 break;
