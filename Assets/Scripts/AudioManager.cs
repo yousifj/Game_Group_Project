@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
         BackgroundMusic,
         GameOver,
         NextLevel,
+        PlayerSpawn,
         PlayerAttack,
         PlayerDeath,
         ChickenAttack,
@@ -26,8 +27,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private AudioClip nextLevelSound;
-    [SerializeField] private AudioClip playerAttackSound;
-    [SerializeField] private AudioClip playerDeathSound;
+    [SerializeField] private AudioClip[] playerSpawnSound;
+    [SerializeField] private AudioClip[] playerAttackSound;
+    [SerializeField] private AudioClip[] playerDeathSound;
     [SerializeField] private AudioClip chickenAttackSound;
     [SerializeField] private AudioClip chickenDeathSound;
     [SerializeField] private AudioClip birdAttackSound;
@@ -43,8 +45,7 @@ public class AudioManager : MonoBehaviour
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }
-    private void Start()
-    {
+    private void Start() {
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -62,11 +63,14 @@ public class AudioManager : MonoBehaviour
             case Sound.NextLevel:
                 audioSource.PlayOneShot(nextLevelSound);
                 break;
+            case Sound.PlayerSpawn:
+                PlayRandomSound(playerSpawnSound);
+                break;
             case Sound.PlayerAttack:
-                audioSource.PlayOneShot(playerAttackSound);
+                PlayRandomSound(playerAttackSound);
                 break;
             case Sound.PlayerDeath:
-                audioSource.PlayOneShot(playerDeathSound);
+                PlayRandomSound(playerDeathSound);
                 break;
             case Sound.ChickenAttack:
                 audioSource.PlayOneShot(chickenAttackSound);
@@ -97,6 +101,16 @@ public class AudioManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void PlayRandomSound(AudioClip[] soundArray)
+    {
+        if(soundArray.Length > 0) {
+            int randomIndex = Random.Range(0, soundArray.Length);
+            audioSource.PlayOneShot(soundArray[randomIndex]);
+        } else {
+            Debug.LogWarning("Sound array is empty.");
         }
     }
 }
