@@ -144,7 +144,8 @@ MonoBehaviour:
   backgroundMusic: {fileID: 0}
   gameOverSound: {fileID: 0}
   nextLevelSound: {fileID: 0}
-  playerSpawnSound: []
+  playerSpawnSound:
+  - {fileID: 0}
   playerAttackSound:
   - {fileID: 0}
   playerDeathSound:
