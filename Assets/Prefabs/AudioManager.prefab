@@ -154,8 +154,8 @@ MonoBehaviour:
   chickenDeathSound: {fileID: 0}
   birdAttackSound: {fileID: 0}
   birdDeathSound: {fileID: 0}
-  peaShooterAttackSound: {fileID: 0}
-  peaShooterDeathSound: {fileID: 0}
+  peaShooterAttackSound: {fileID: 8300000, guid: a1bf5dd00ddcebe44922a4a9caf16a19, type: 3}
+  peaShooterDeathSound: {fileID: 8300000, guid: e5c41cb0b13d49a47b638f4856ebbf94, type: 3}
   rhinoAttackSound: {fileID: 0}
   rhinoDamageSound: {fileID: 0}
   rhinoDeathSound: {fileID: 0}
