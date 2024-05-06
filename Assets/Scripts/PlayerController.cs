@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         feetBoxcollider2D = GetComponent<BoxCollider2D>();
         gravityStart = rigidBody2D.gravityScale;
         sword = FindObjectOfType<Sword>();
+        FindObjectOfType<AudioManager>().Play(AudioManager.Sound.PlayerSpawn);
     }
     // Update is called once per frame
     void Update()
@@ -189,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
         rigidBody2D.velocity = deathJump;
         StartCoroutine(HandelDeath());
-        //FindObjectOfType<AudioManger>().Play("Death");
+        FindObjectOfType<AudioManager>().Play(AudioManager.Sound.PlayerDeath);
 
     }
     // Handel the death of the player

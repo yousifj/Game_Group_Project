@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour
 
     public void Attack()
     {
+        PlaySounds();
         if (gameObject != null && gameObject.GetComponent<Enemy>())
         {
             gameObject.GetComponent<Enemy>().killEnemy();
@@ -27,6 +28,19 @@ public class Sword : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         gameObject = null;
+    }
+    // Play attach sound
+    void PlaySounds()
+    {
+        if (!gameObject)
+        {
+            FindObjectOfType<AudioManager>().Play(AudioManager.Sound.PlayerAttack);
+
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play(AudioManager.Sound.PlayerAttackEnemy);
+        }
     }
 
 }

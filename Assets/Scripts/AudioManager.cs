@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    // Singleton for the AudioManager
+    private static AudioManager _instance;
+    public static AudioManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
     public enum Sound
     {
         BackgroundMusic,
@@ -11,6 +27,7 @@ public class AudioManager : MonoBehaviour
         NextLevel,
         PlayerSpawn,
         PlayerAttack,
+        PlayerAttackEnemy,
         PlayerDeath,
         ChickenAttack,
         ChickenDeath,
@@ -29,6 +46,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip nextLevelSound;
     [SerializeField] private AudioClip[] playerSpawnSound;
     [SerializeField] private AudioClip[] playerAttackSound;
+    [SerializeField] private AudioClip[] playerAttackEnemySound;
     [SerializeField] private AudioClip[] playerDeathSound;
     [SerializeField] private AudioClip chickenAttackSound;
     [SerializeField] private AudioClip chickenDeathSound;
@@ -42,9 +60,6 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private void Awake() {
-        DontDestroyOnLoad(gameObject);
-    }
     private void Start() {
         audioSource = GetComponent<AudioSource>();
     }
@@ -68,6 +83,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case Sound.PlayerAttack:
                 PlayRandomSound(playerAttackSound);
+                break;
+            case Sound.PlayerAttackEnemy:
+                PlayRandomSound(playerAttackEnemySound);
                 break;
             case Sound.PlayerDeath:
                 PlayRandomSound(playerDeathSound);
