@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
         BackgroundMusic,
         GameOver,
         NextLevel,
+        PickUp,
         PlayerSpawn,
         PlayerAttack,
         PlayerAttackEnemy,
@@ -28,6 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private AudioClip nextLevelSound;
+    [SerializeField] private AudioClip PickUpSound;
     [SerializeField] private AudioClip[] playerSpawnSound;
     [SerializeField] private AudioClip[] playerAttackSound;
     [SerializeField] private AudioClip[] playerAttackEnemySound;
@@ -61,6 +63,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case Sound.NextLevel:
                 audioSource.PlayOneShot(nextLevelSound);
+                break;
+            case Sound.PickUp:
+                audioSource.PlayOneShot(PickUpSound);
                 break;
             case Sound.PlayerSpawn:
                 PlayRandomSound(playerSpawnSound);
