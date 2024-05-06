@@ -27,6 +27,9 @@ public class Bullets : MonoBehaviour
     //Timer to track the bullet's lifespan
     private float lifespanTimer;
 
+    //This represents the audio manager game object 
+    AudioManager audioManager;
+
     void Start()
     {
         //Find the player object by name
@@ -40,6 +43,12 @@ public class Bullets : MonoBehaviour
 
         //Set the velocity of the bullet to move straight
         bulletRigidbody.velocity = -transform.right * bulletSpeed;
+
+        //Find the audio manager game object
+        audioManager = FindAnyObjectByType<AudioManager>().GetComponent<AudioManager>();
+
+        //Play the peashooter attack sound
+        audioManager.Play(AudioManager.Sound.PeaShooterAttack);
     }
 
     void Update()
@@ -62,7 +71,7 @@ public class Bullets : MonoBehaviour
         {
             // Check if the player is attacking
             if (Input.GetButton("Fire1"))
-            {
+            {   
                 // Player is swinging the sword, destroy the bullet
                 Destroy(gameObject);
             }
