@@ -144,6 +144,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 0}
   gameOverSound: {fileID: 0}
   nextLevelSound: {fileID: 0}
+  PickUpSound: {fileID: 8300000, guid: 2b3d28bdf0de6b145aa04876f00805c0, type: 3}
   playerSpawnSound:
   - {fileID: 8300000, guid: 13c8bbef870bd5e4dbb3f150834b1b9a, type: 3}
   - {fileID: 8300000, guid: 124f3b21e33f8dd44bba4fc286067cce, type: 3}
@@ -166,7 +167,7 @@ MonoBehaviour:
   chickenAttackSound: {fileID: 0}
   chickenDeathSound: {fileID: 0}
   birdAttackSound: {fileID: 0}
-  birdDeathSound: {fileID: 0}
+  birdDeathSound: {fileID: 8300000, guid: a1bba8f5b29603d419e040f218e6853b, type: 3}
   peaShooterAttackSound: {fileID: 8300000, guid: a1bf5dd00ddcebe44922a4a9caf16a19, type: 3}
   peaShooterDeathSound: {fileID: 8300000, guid: e5c41cb0b13d49a47b638f4856ebbf94, type: 3}
   rhinoAttackSound: {fileID: 0}
