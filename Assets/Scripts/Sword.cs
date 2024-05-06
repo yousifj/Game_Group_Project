@@ -11,7 +11,8 @@ public class Sword : MonoBehaviour
     {
         if (gameObject != null && gameObject.GetComponent<Enemy>())
         {
-            Destroy(gameObject);
+            gameObject.GetComponent<Enemy>().killEnemy();
+            
         }
 
     }
@@ -20,7 +21,7 @@ public class Sword : MonoBehaviour
     {
         if (collision != null)
         {
-            gameObject = (collision.gameObject);
+            gameObject = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

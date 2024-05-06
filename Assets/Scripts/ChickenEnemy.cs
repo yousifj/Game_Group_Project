@@ -12,7 +12,7 @@ public class ChickenEnemy : MonoBehaviour
     public bool offPlatform = false;
     private SpriteRenderer spriteRenderer;
     private float moveDirection = -1;
-    public Transform player; // Reference to the player
+    private Transform player; // Reference to the player
     public float detectionXRange = 10f;
     public float detectionYRange = 0.5f;
     Animator animationController;
@@ -45,6 +45,8 @@ public class ChickenEnemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         chickenState = eState.forward;
         circleCollider = GetComponent<CircleCollider2D>();
+        player = FindAnyObjectByType<PlayerController>().transform;
+
     }
 
     private bool IsPlayerWithinRange()
