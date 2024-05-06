@@ -37,6 +37,7 @@ public class GameManger : MonoBehaviour
     public void handelDeath()
     {
         gameOverCanvas.SetActive(true);
+        PauseGame();
 
     }
     void handelWin()
@@ -48,7 +49,15 @@ public class GameManger : MonoBehaviour
         yield return new WaitForSeconds(2);
         winCanvas.SetActive(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PauseGame();
 
-
+    }
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

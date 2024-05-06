@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         isAlive = false;
-        //animator.SetBool("isDoubleJumping", false);
+        animator.SetBool("isAttacking", false);
         animator.SetBool("isDead", true);
 
         rigidBody2D.velocity = deathJump;

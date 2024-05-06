@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueBird : MonoBehaviour
+public class BlueBirdMover : MonoBehaviour
 {
     public Transform secondPoint; // Second point
     public float speed = 1.0f;    // Speed of movement

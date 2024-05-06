@@ -9,11 +9,13 @@ public class GameSceneManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+        ResumeGame();
     }
     // Go to the next level
     public void NextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        ResumeGame();
 
     }
     // Exit the game
@@ -25,5 +27,10 @@ public class GameSceneManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ResumeGame();
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
