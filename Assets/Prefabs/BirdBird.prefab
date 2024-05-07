@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3397556786822432562}
   - component: {fileID: 3397556786822432565}
   - component: {fileID: 3397556786822432564}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BlueBird Mover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3397556787422315590}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BirdBird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3397556788036355543}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SecondPoint
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3397556788298681511}
   - component: {fileID: 3397556788298681515}
   - component: {fileID: 3397556788298681514}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BlueBird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,3 +280,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754cd75f5fd2bb64c85be6e21917fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsToKill: 1

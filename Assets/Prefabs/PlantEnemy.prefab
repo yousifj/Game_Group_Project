@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5099216268984541623}
   - component: {fileID: 5099216268984541576}
   - component: {fileID: 1452829211}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlantEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754cd75f5fd2bb64c85be6e21917fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsToKill: 1
 --- !u!58 &5099216268984541623
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5099216270375982111}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 'Bullet start postition '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

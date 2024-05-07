@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5112341540524891985}
   - component: {fileID: 5112341540524891986}
   - component: {fileID: 5112341540524891987}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754cd75f5fd2bb64c85be6e21917fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsToKill: 1
 --- !u!58 &5112341540524891985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,7 +182,6 @@ MonoBehaviour:
   moveSpeedFast: 1.75
   jumpForce: 7
   offPlatform: 0
-  player: {fileID: 0}
   detectionXRange: 10
   detectionYRange: 1
   chickenState: 0
