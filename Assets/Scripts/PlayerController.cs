@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        mycollider2D = GetComponent<Collider2D>();
+        mycollider2D = GetComponent<CapsuleCollider2D>();
         feetBoxcollider2D = GetComponent<BoxCollider2D>();
         gravityStart = rigidBody2D.gravityScale;
         sword = FindObjectOfType<Sword>();
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     // The Player should die if he touches something in the hazard layer. 
     private void CheckHazards()
     {
-        if (feetBoxcollider2D.IsTouchingLayers(LayerMask.GetMask("Hazard")))
+        if (feetBoxcollider2D.IsTouchingLayers(LayerMask.GetMask("Hazard")) || mycollider2D.IsTouchingLayers(LayerMask.GetMask("Hazard")))
         {
             Die();
         }
