@@ -4532,14 +4532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6695915447869783363, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
-      propertyPath: PickUpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2b3d28bdf0de6b145aa04876f00805c0, type: 3}
-    - target: {fileID: -6695915447869783363, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
-      propertyPath: birdDeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a1bba8f5b29603d419e040f218e6853b, type: 3}
     - target: {fileID: 933437327314485052, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4587,10 +4579,6 @@ PrefabInstance:
     - target: {fileID: 3590628878586788215, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590628878586788215, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
@@ -8701,22 +8689,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1190140093, guid: 894829d1523ec7f428dc52dfeca719de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352651856, guid: 894829d1523ec7f428dc52dfeca719de, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ae04db5eff3044f469bf37358c408401, type: 3}
-    - target: {fileID: 1625811657, guid: 894829d1523ec7f428dc52dfeca719de, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1864131822, guid: 894829d1523ec7f428dc52dfeca719de, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ae04db5eff3044f469bf37358c408401, type: 3}
     - target: {fileID: 2522652438111245347, guid: 894829d1523ec7f428dc52dfeca719de, type: 3}
       propertyPath: m_Name
       value: GameManger
