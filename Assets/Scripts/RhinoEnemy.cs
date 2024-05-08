@@ -16,7 +16,7 @@ public class RhinoEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    enum State
+    public enum State
     {
         Patrolling,
         Boosting,

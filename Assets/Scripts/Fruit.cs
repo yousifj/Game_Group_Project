@@ -15,13 +15,16 @@ public class Fruit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isCollected)
+        if (collision.GetComponent<PlayerController>())
         {
-            return;
+            if (isCollected)
+            {
+                return;
+            }
+            isCollected = true;
+            FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.PickUp);
+            animator.SetBool("isCollected", true);
         }
-        isCollected = true;
-        FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.PickUp);
-        animator.SetBool("isCollected", true);
     }
     public void Collected()
     {
