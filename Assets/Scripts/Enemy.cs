@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // Get vaule from the editor 
     [SerializeField] int hitsToKill = 1;
     AudioManager audioManager;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
         
     }
 
+    // logic for killing the enemy take hits until point reach 0
     public void killEnemy()
     {
         hitsToKill--;
@@ -27,7 +29,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
+    // Logic for dying play sound then destory game object
     private void Die()
     {
         if (GetComponent<ChickenEnemy>())

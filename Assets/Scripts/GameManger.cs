@@ -23,6 +23,7 @@ public class GameManger : MonoBehaviour
         UpdateText();
     }
 
+    // Keep track of how many enemies and fruits there are when they reach zero we win
     private void UpdateText()
     {
         int enemyCount = FindObjectsOfType<Enemy>().Length;
@@ -34,12 +35,15 @@ public class GameManger : MonoBehaviour
             handelWin();
         }
     }
+    // Incase player dies display the gameover canvas
     public void handelDeath()
     {
         gameOverCanvas.SetActive(true);
+        // Pause the game to stop sounds from playing 
         PauseGame();
 
     }
+    // Incase the player win then play sound wait a bit then display canvas
     void handelWin()
     {
         StartCoroutine(Win());
@@ -48,7 +52,6 @@ public class GameManger : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         winCanvas.SetActive(true);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         PauseGame();
 
     }

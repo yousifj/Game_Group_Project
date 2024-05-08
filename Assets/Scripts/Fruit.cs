@@ -12,7 +12,7 @@ public class Fruit : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
+    // Collect the fruit when a player touches the collider of the fruit
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>())
@@ -21,6 +21,7 @@ public class Fruit : MonoBehaviour
             {
                 return;
             }
+            // play animation and sound
             isCollected = true;
             FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.PickUp);
             animator.SetBool("isCollected", true);

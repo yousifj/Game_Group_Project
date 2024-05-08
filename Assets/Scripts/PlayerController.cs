@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector2 deathJump = new Vector2(25, 50);
 
 
-    // State 
+    // Control variables  
     bool isAlive = true;
     bool isAttacking = false;
     bool canDoubleJump = false;
     float gravityStart;
 
-    //cashed component refernces
+    // Cashed component refernces
     Rigidbody2D rigidBody2D;
     Animator animator;
     Collider2D mycollider2D;
@@ -93,9 +93,7 @@ public class PlayerController : MonoBehaviour
     // Trigger the actual killing on an enemy, controlled by the animation 
     private void KillEnemy()
     {
-        
         sword.Attack();
-
     }
 
     // Stop the attack 
@@ -103,7 +101,6 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = false;
         animator.SetBool("isAttacking", false);
-        
     }
 
     // Handel running
@@ -209,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator HandelWin()
     {
-        //animator.SetBool("isDead", true);
+        FindObjectOfType<AudioManager>().Play(AudioManager.Sound.NextLevel);
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BlueBirdMover : MonoBehaviour
 {
-    public Transform secondPoint; // Second point
-    public float speed = 1.0f;    // Speed of movement
+    // Second point to go twords
+    public Transform secondPoint; 
+    public float speed = 1.0f;   
     public SpriteRenderer spriteRenderer;
 
     private Vector3 initialPosition;
@@ -13,6 +14,7 @@ public class BlueBirdMover : MonoBehaviour
 
     void Start()
     {
+        // First point in the current positon 
         initialPosition = transform.position;
     }
 
