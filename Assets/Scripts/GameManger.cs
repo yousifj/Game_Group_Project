@@ -11,6 +11,8 @@ public class GameManger : MonoBehaviour
     [SerializeField] TextMeshProUGUI fruitText;
     [SerializeField] GameObject winCanvas;
     [SerializeField] GameObject gameOverCanvas;
+
+    bool levelOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +34,24 @@ public class GameManger : MonoBehaviour
         fruitText.text = "Fruits left: " + fruitCount;
         if (enemyCount == 0 && fruitCount == 0)
         {
-            handelWin();
+            if (!levelOver)
+            {
+                levelOver = true;
+                handelWin();
+            }
+            
         }
     }
     // Incase player dies display the gameover canvas
     public void handelDeath()
     {
-        gameOverCanvas.SetActive(true);
-        // Pause the game to stop sounds from playing 
-        PauseGame();
+        if (!levelOver)
+        {
+            levelOver = true;
+            gameOverCanvas.SetActive(true);
+            // Pause the game to stop sounds from playing 
+            PauseGame();
+        }
 
     }
     // Incase the player win then play sound wait a bit then display canvas
@@ -50,6 +61,7 @@ public class GameManger : MonoBehaviour
     }
     IEnumerator Win()
     {
+        FindObjectOfType<AudioManager>().Play(AudioManager.Sound.NextLevel);
         yield return new WaitForSeconds(2);
         winCanvas.SetActive(true);
         PauseGame();

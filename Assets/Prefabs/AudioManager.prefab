@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 0}
   gameOverSound: {fileID: 0}
-  nextLevelSound: {fileID: 0}
+  nextLevelSound: {fileID: 8300000, guid: 7acf181f2c3cb4948adf1eadc2c13f4f, type: 3}
   PickUpSound: {fileID: 8300000, guid: 2b3d28bdf0de6b145aa04876f00805c0, type: 3}
   playerSpawnSound:
   - {fileID: 8300000, guid: 13c8bbef870bd5e4dbb3f150834b1b9a, type: 3}
