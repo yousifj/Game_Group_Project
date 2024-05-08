@@ -164,8 +164,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a1bba8f5b29603d419e040f218e6853b, type: 3}
   playerDeathSound:
   - {fileID: 8300000, guid: 8576eae75cd593d48bb51799e6f111ef, type: 3}
-  chickenAttackSound: {fileID: 0}
-  chickenDeathSound: {fileID: 0}
+  chickenAttackSound: {fileID: 8300000, guid: 6bf5f72c9828cdb4c9d477ac0b6a5faf, type: 3}
+  chickenDeathSound: {fileID: 8300000, guid: 6736fbfbae9078d4aa03cda08961ed3c, type: 3}
   birdAttackSound: {fileID: 0}
   birdDeathSound: {fileID: 8300000, guid: a1bba8f5b29603d419e040f218e6853b, type: 3}
   peaShooterAttackSound: {fileID: 8300000, guid: a1bf5dd00ddcebe44922a4a9caf16a19, type: 3}

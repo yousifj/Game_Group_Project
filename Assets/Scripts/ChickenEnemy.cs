@@ -62,9 +62,15 @@ public class ChickenEnemy : MonoBehaviour
     {
         if (IsPlayerWithinRange())
         {
+            if (moveSpeed != moveSpeedFast)
+            {
+                FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.ChickenAttack);
+            }
             Debug.Log("Speeding up within range");
             animationController.speed = 2.0f;
+
             moveSpeed = moveSpeedFast;
+
         }
         else
         {
