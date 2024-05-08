@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 001b7e60c7beb9c4380ca1dc0dafcb96
+  - enabled: 1
+    path: Assets/Scenes/SampleScene 2 John.unity
+    guid: f4259e5083d9ec949a171f7708ce7276
   - enabled: 1
     path: Assets/Scenes/SampleScene 3 Mario.unity
     guid: c1895fa4e814b7543b90e264ea632c76
@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene 4 Thom.unity
     guid: 17d12ccdd1525d947aa41363a5fac1f4
   - enabled: 1
+    path: Assets/Scenes/SampleScene 8 Raf.unity
+    guid: 89d0c9d0f5932bb4388abfaa577b7228
+  - enabled: 1
     path: Assets/Scenes/SampleScene 1 Yousif.unity
     guid: e1b0f6afddc75f7489a4ba0f281645a2
+  - enabled: 1
+    path: Assets/Scenes/Game Win.unity
+    guid: 79994eceef704e241a896ba50ed8fab0
   m_configObjects: {}
