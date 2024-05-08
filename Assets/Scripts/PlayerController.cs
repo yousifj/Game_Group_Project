@@ -184,14 +184,15 @@ public class PlayerController : MonoBehaviour
     // Method to controll behivor of the player dying.
     public void Die()
     {
+        // Make sure the player is alive before killing it
+        if (isAlive) { 
         isAlive = false;
         animator.SetBool("isAttacking", false);
         animator.SetBool("isDead", true);
-
         rigidBody2D.velocity = deathJump;
         StartCoroutine(HandelDeath());
         FindObjectOfType<AudioManager>().Play(AudioManager.Sound.PlayerDeath);
-
+        }
     }
     // Handel the death of the player
     IEnumerator HandelDeath()
