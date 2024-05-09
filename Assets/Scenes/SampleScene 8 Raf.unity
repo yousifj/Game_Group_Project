@@ -10724,6 +10724,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6695915447869783363, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
+      propertyPath: rhinoDeathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b91160dd7910a4a169603d3543adfb00, type: 3}
+    - target: {fileID: -6695915447869783363, guid: e90a128036367ed44ba52cd3de6ea158, type: 3}
       propertyPath: rhinoAttackSound
       value: 
       objectReference: {fileID: 8300000, guid: a93a19e495d9b48c98ec83a84ab83c01, type: 3}
@@ -11703,6 +11707,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56036268, guid: ce1f451a39d544625bb303270dda7503, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8777560382096809952, guid: ce1f451a39d544625bb303270dda7503, type: 3}
       propertyPath: m_RootOrder
       value: 6
