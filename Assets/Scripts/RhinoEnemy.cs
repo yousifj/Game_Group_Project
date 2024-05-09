@@ -28,6 +28,7 @@ public class RhinoEnemy : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private AudioSource audioSource;
 
     //This represents the audio manager game object 
     AudioManager audioManager;
@@ -47,7 +48,7 @@ public class RhinoEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         //Find the audio manager game object
         audioManager = FindAnyObjectByType<AudioManager>().GetComponent<AudioManager>();
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -124,6 +125,7 @@ public class RhinoEnemy : MonoBehaviour
     // Delays time before Rhino recovers
     IEnumerator Recovering()
     {
+        audioSource.Pause();
         animator.SetBool("WallHit", true);
         yield return new WaitForSeconds(fatigueDuration); // Wait for the specified delay
         rhinoState = State.Fatigued;
@@ -134,6 +136,7 @@ public class RhinoEnemy : MonoBehaviour
     IEnumerator ResetToPatrol()
     {
         yield return new WaitForSeconds(wallHitDelay); // Add a brief delay
+        audioSource.Play();
         patrolDirection = -patrolDirection; // Flip patrol direction
         rhinoState = State.Patrolling;
     }
