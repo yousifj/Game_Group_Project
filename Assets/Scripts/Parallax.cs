@@ -6,15 +6,17 @@ public class Parallax : MonoBehaviour
 {
     private float length, startpos;
     public GameObject cam;
+    //This value will get adjusted for each different part of background individually to creaet affect
     public float parallaxEffect;
-    // Start is called before the first frame update
+    
     void Start()
     {
         startpos = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
+    // Background is broken it several different parts, background, middle ground, front ground.
+    //This script creates a Parallax affect by moving different parts of the background at different rates relative to player position and the other parts of backgrdoun
     void Update()
     {
         float temp = (cam.transform.position.x * (1 - parallaxEffect));

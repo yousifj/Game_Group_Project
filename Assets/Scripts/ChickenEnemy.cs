@@ -4,51 +4,41 @@ using UnityEngine;
 
 public class ChickenEnemy : MonoBehaviour
 {
+    
+    private float moveSpeed;
+    private float moveDirection = -1;
+    private Transform player;
+    Animator animationController;
+    private bool offPlatform = false;
+    private float turnStartTime;
+    private float recoveryTime = 0.5f;
+    // Tunable variables to allow the user to adjust these at runtime
+    [SerializeField] float detectionXRange = 10f;
+    [SerializeField] float detectionYRange = 0.5f;
     [SerializeField] float slowMoveSpeed = 0.9f;
     [SerializeField] float moveSpeedFast = 2.25f;
-    private float moveSpeed;
-    // Start is called before the first frame update
-    public float jumpForce = 7f; // Jump force
-    public bool offPlatform = false;
-    private SpriteRenderer spriteRenderer;
-    private float moveDirection = -1;
-    private Transform player; // Reference to the player
-    public float detectionXRange = 10f;
-    public float detectionYRange = 0.5f;
-    Animator animationController;
 
+    //State machine states for the chicken
     public enum eState : int
     {
-        forward, //black
-        offLedge, //green
-        turnAround, //blue
-        quickDash, //red
+        forward,
+        offLedge, 
+        turnAround, 
+        quickDash, 
         kNumStates
     }
 
     public eState chickenState;
-
-    private Color[] stateColors = new Color[(int)eState.kNumStates]
-  {
-        new Color(0, 0,   0),
-        new Color(0,   255, 0),
-        new Color(0,   0,   255),
-        new Color(255,   0,   0),
-  };
-    float turnStartTime;
-    float recoveryTime = 0.5f;
-    private CircleCollider2D circleCollider;
-
+    
     void Start()
     {
         animationController = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         chickenState = eState.forward;
-        circleCollider = GetComponent<CircleCollider2D>();
         player = FindAnyObjectByType<PlayerController>().transform;
 
     }
 
+    // Detects if the chicken is within a specified x and y range by the player
     private bool IsPlayerWithinRange()
     {
         float xDifference = Mathf.Abs(player.position.x - transform.position.x);
@@ -57,18 +47,18 @@ public class ChickenEnemy : MonoBehaviour
         return xDifference <= detectionXRange && yDifference <= detectionYRange;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Update the chicken to speed up if we detect the player nearby
         if (IsPlayerWithinRange())
         {
+            //Render the chicken sound only when we change states from slow speed to fast speed
             if (moveSpeed != moveSpeedFast)
             {
                 FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.ChickenAttack);
             }
-            Debug.Log("Speeding up within range");
+            //Update animation and move speeds based on the 
             animationController.speed = 2.0f;
-
             moveSpeed = moveSpeedFast;
 
         }
@@ -77,50 +67,53 @@ public class ChickenEnemy : MonoBehaviour
             animationController.speed = 1.0f;
             moveSpeed = slowMoveSpeed;
         }
-       // spriteRenderer.color = stateColors[(int)chickenState];
+       
+        //State Machine logic
         switch (chickenState)
         {
-
             case eState.forward:
-                //maybe an animation for forward idk lol
                 moveForward();
                 break;
+            //When the chicken is almost off the ledge pauses as part of a timeout 
             case eState.offLedge:
                 float currentTime = Time.time;
-                //pause for the revovery time
+                
                 if (currentTime >= turnStartTime + recoveryTime)
                 {
                     chickenState = eState.turnAround;
                 }
                
                 break;
+            //State changes from turning around to quickly dashing
             case eState.turnAround:
                 RotateSprite180();
                 chickenState = eState.quickDash;
                 break;
+            //quickly translate the chicken towards the position it is facing by a small amount
             case eState.quickDash:
                 transform.position = transform.position + new Vector3(moveDirection * 0.25f, 0f, 0f);
                 chickenState = eState.forward;
                 break;
         }
 
-        //update the state to turn the chicken around if we are about to fall off
-        if (offPlatform && chickenState != eState.offLedge && chickenState != eState.turnAround && chickenState !=eState.quickDash)
+        //Change state to off ledge if we are offplatform and moving forward
+        if (offPlatform && chickenState != eState.offLedge && chickenState != eState.turnAround && chickenState != eState.quickDash)
         {
             chickenState = eState.offLedge;
-            //change the direction
             moveDirection *= -1;
-            Debug.Log("Off platform");
             offPlatform = false;
 
         }
     }
 
+    //Translate the position over time
     public void moveForward()
     {
         float movement = moveDirection * moveSpeed * Time.deltaTime;
         transform.position = transform.position + new Vector3(movement, 0f, 0f);
     }
+
+    //Rotates the Chicken in other direction so it does not fall of ledge
     public void RotateSprite180()
     {
         Vector3 currentRotation = transform.localEulerAngles;
@@ -129,19 +122,11 @@ public class ChickenEnemy : MonoBehaviour
         turnStartTime = Time.time;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
-
+    //when the chicken is about to fall off the ledge we need to say to inform state machine to turn around
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //when the chicken falls off the ledge we need to say to inform state machine
-        //need to hit the player if we are on it, ensure sword also have player TAG!!
         if (!collision.CompareTag("Player"))
         {
-            Debug.Log("Player exiting");
             offPlatform = true;
         }
     }
