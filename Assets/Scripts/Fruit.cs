@@ -25,6 +25,10 @@ public class Fruit : MonoBehaviour
             isCollected = true;
             FindAnyObjectByType<AudioManager>().Play(AudioManager.Sound.PickUp);
             animator.SetBool("isCollected", true);
+            if (GetComponent<CapsuleCollider2D>())
+            {
+                GetComponent<CapsuleCollider2D>().isTrigger = true;
+            }
         }
     }
     public void Collected()
