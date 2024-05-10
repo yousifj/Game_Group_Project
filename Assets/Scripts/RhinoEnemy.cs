@@ -5,27 +5,32 @@ using UnityEngine;
 public class RhinoEnemy : MonoBehaviour
 {
     public Transform player;
+
     // Current state
     public State rhinoState;
+
     // Speed when in patrolling state
     public float patrolSpeed = 2f;
+
     // Speed during the boost
     public float boostedSpeed = 10f;
+
     // Trigger radius for dashing
     public float detectionRadius = 5f; 
+
     // Amount of force to apply for the bounce, adjustable in Inspector
     public float bounceForce = 10f; 
+
     // Delay after hitting wall
     public float wallHitDelay = 1.5f;
+
     // Delay before starting dash
     public float boostDelay = .5f; 
+
     // Delay before returning to patrol mode
     public float fatigueDuration = .5f;
-
     private Vector2 patrolDirection = Vector2.left;
-
     private Rigidbody2D rb;
-
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private AudioSource audioSource;
@@ -35,9 +40,9 @@ public class RhinoEnemy : MonoBehaviour
 
     public enum State
     {
-        Patrolling,
-        Dashing,
-        Fatigued,
+        Patrolling, //Default state, patrols area
+        Dashing, // Moves faster when detecting player
+        Fatigued, // Hitting a wall triggers 
     }
 
     void Start()
@@ -56,17 +61,16 @@ public class RhinoEnemy : MonoBehaviour
         switch (rhinoState)
         {
             case State.Patrolling:
-                animator.SetBool("Dashing", false);
-                animator.SetBool("WallHit", false);
+                animator.SetBool("Dashing", false); // Sets dashing animation false
+                animator.SetBool("WallHit", false); // Sets WallHit animation false
                 Patrol();
                 CheckForBoostTrigger();
                 break;
             case State.Dashing:
-                animator.SetBool("Dashing", true);
+                animator.SetBool("Dashing", true); //Sets Dashing animation true
                 Boost();
                 break;
             case State.Fatigued:
-                
                 rb.velocity = new Vector2(0 * patrolDirection.x, rb.velocity.y); //Stops movement
                 break;
         }
